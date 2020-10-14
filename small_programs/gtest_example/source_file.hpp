@@ -1,0 +1,1 @@
+float calc(int x);
