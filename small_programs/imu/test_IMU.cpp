@@ -1,5 +1,5 @@
-#include "IMU.hpp" 
-#include "gtest/gtest.h" 
+#include "IMU.hpp"
+#include "gtest/gtest.h"
 
 TEST(accelConversion, 0000) {
   EXPECT_NEAR(accelConversion(0x0000), 0.0, 0.05);
@@ -22,8 +22,8 @@ TEST(accelConversion, 4074) {
 }
 
 // almost 2g -> maximum measurement
-TEST(accelConversion, 7999) {
-  EXPECT_NEAR(accelConversion(0x7999), 1.9, 0.05);
+TEST(accelConversion, 7fff) {
+  EXPECT_NEAR(accelConversion(0x7fff), 2.0, 0.05);
 }
 
 // -2g -> maximum measurement
@@ -47,8 +47,8 @@ TEST(gyroConversion, 4000){
   EXPECT_NEAR(gyroConversion(0x4000), 125.0, 0.25);
 }
 
-TEST(gyroConversion, 7999){
-  EXPECT_NEAR(gyroConversion(0x7999), 237.625, 0.25);
+TEST(gyroConversion, 7fff){
+  EXPECT_NEAR(gyroConversion(0x7fff), 250.0, 0.25);
 }
 
 TEST(gyroConversion, 8000){

@@ -1,7 +1,7 @@
 #include "IMU.hpp"
 
 int init(){
-    
+
     const unsigned val[2] = {PWR_MGMT_1, 0};
     int f;
     if ((f = open(i2c_device_string.c_str(), O_RDWR)) < 0){
@@ -21,7 +21,7 @@ int init(){
 }
 
 uint8_t readReg(uint8_t reg){
-   
+
     int f;
     char namebuf[20];
     snprintf(namebuf, sizeof(namebuf), "/dev/i2c-%d", I2C_BUS);
@@ -52,7 +52,6 @@ float accelConversion(int regVal){
         regVal = (65536 - regVal);
         regVal = -1 * regVal;
     }
-    std::cout << (float)regVal/ACCEL_SCALE_FACTOR << std::endl;
     return (float)regVal/ACCEL_SCALE_FACTOR;
 }
 
@@ -62,7 +61,6 @@ float gyroConversion(int regVal){
         regVal = (65536 - regVal);
         regVal = -1 * regVal;
     }
-    std::cout << (float)regVal/GYRO_SCALE_FACTOR << std::endl;
     return (float)regVal/GYRO_SCALE_FACTOR;
 }
 
@@ -82,7 +80,7 @@ accelXYZ_t readAccelXYZ(){
     ret.accel_Y = accelConversion(readReg(ACCEL_YOUT_H) << 8 | readReg(ACCEL_YOUT_L));
     ret.accel_Z = accelConversion(readReg(ACCEL_ZOUT_H) << 8 | readReg(ACCEL_ZOUT_L));
     return ret;
-} 
+}
 
 gyroXYZ_t readGyroXYZ(){
 
