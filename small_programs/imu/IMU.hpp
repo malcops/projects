@@ -32,6 +32,9 @@
 #define ACCEL_SCALE_FACTOR 16384
 #define GYRO_SCALE_FACTOR 131
 
+#define TEMP_OUT_H 0x41
+#define TEMP_OUT_L 0x42
+
 #define PWR_MGMT_1 0x6B
 
 static const std::string i2c_device_string = "/dev/i2c-2";
@@ -53,6 +56,8 @@ uint8_t readReg(uint8_t reg);
 
 float accelConversion(int regVal);
 float gyroConversion(int regVal);
+float tempConversion(int regVal);
 
-accelXYZ_t readAccelXYZ(); 
+accelXYZ_t readAccelXYZ();
 gyroXYZ_t readGyroXYZ();
+float readTemp();

@@ -9,13 +9,15 @@ int main(void){
         accels = readAccelXYZ();
         char accelOutput[128];
         snprintf(accelOutput, sizeof(accelOutput), "accels %f %f %f\n", accels.accel_X, accels.accel_Y, accels.accel_Z);
-        std::cout << accelOutput << std::endl;       
+        std::cout << accelOutput << std::endl;
 
         gyroXYZ_t gyros;
         gyros = readGyroXYZ();
         char gyroOutput[50];
         snprintf(gyroOutput, sizeof(gyroOutput), "gyros %f %f %f\n", gyros.gyro_X, gyros.gyro_Y, gyros.gyro_Z);
         std::cout << gyroOutput << std::endl;
+
+        std::cout << readTemp() << std::endl;
 
         sleep(1);
     }
