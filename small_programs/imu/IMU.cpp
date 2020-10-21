@@ -66,6 +66,15 @@ float gyroConversion(int regVal){
     return (float)regVal/GYRO_SCALE_FACTOR;
 }
 
+float tempConversion(int regVal){
+
+    if (regVal >= 0x8000){
+        regVal = (65536 - regVal);
+        regVal = -1 * regVal;
+    }
+    return (float)regVal/340 + 36.53;
+}
+
 accelXYZ_t readAccelXYZ(){
 
     accelXYZ_t ret = {0};
@@ -84,7 +93,11 @@ gyroXYZ_t readGyroXYZ(){
     return ret;
 }
 
-// TODO 
+float readTemp(){
+    return tempConversion(readReg(TEMP_OUT_H) << 8 | readReg(TEMP_OUT_L));
+}
+
+// TODO
 void adjustAccelSensitivity(){
 
     uint16_t REGISTER = 0x1C;

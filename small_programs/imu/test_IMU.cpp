@@ -63,6 +63,32 @@ TEST(gyroConversion, ffff){
   EXPECT_NEAR(gyroConversion(0xffff), -0.0, 0.25);
 }
 
+// TODO
+TEST(tempConversion, 0000){
+  EXPECT_NEAR(tempConversion(0x0000), 36.53, 0.1);
+}
+
+TEST(tempConversion, 4000){
+  EXPECT_NEAR(tempConversion(0x4000), 84.7, 0.1);
+}
+
+TEST(tempConversion, 7fff){
+  EXPECT_NEAR(tempConversion(0x7fff), 132.9, 0.1);
+}
+
+TEST(tempConversion, 8000){
+  EXPECT_NEAR(tempConversion(0x8000), -59.8, 0.1);
+}
+
+TEST(tempConversion, b000){
+  EXPECT_NEAR(tempConversion(0xb000), -23.7, 0.1);
+}
+
+TEST(tempConversion, ffff){
+  EXPECT_NEAR(tempConversion(0xffff), 36.5, 0.1);
+}
+
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
