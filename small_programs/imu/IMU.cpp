@@ -52,7 +52,7 @@ float accelConversion(int regVal){
         regVal = (65536 - regVal);
         regVal = -1 * regVal;
     }
-    return (float)regVal/ACCEL_SCALE_FACTOR;
+    return static_cast<float>(regVal)/ACCEL_SCALE_FACTOR;
 }
 
 float gyroConversion(int regVal){
@@ -61,7 +61,7 @@ float gyroConversion(int regVal){
         regVal = (65536 - regVal);
         regVal = -1 * regVal;
     }
-    return (float)regVal/GYRO_SCALE_FACTOR;
+    return static_cast<float>(regVal)/GYRO_SCALE_FACTOR;
 }
 
 float tempConversion(int regVal){
@@ -70,7 +70,7 @@ float tempConversion(int regVal){
         regVal = (65536 - regVal);
         regVal = -1 * regVal;
     }
-    return (float)regVal/340 + 36.53;
+    return static_cast<float>(regVal)/340 + 36.53;
 }
 
 accelXYZ_t readAccelXYZ(){
