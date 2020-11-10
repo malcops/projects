@@ -19,7 +19,7 @@ TEST(TestStatus, batteryLevel){
 TEST(TestStatus, sdCard){
     GoPro gp;
     gp.m_currentStatus = exampleStatus;
-    EXPECT_EQ(gp.sdCardInserted(), false);
+    EXPECT_EQ(gp.sdCardInserted(), true);
 }
 
 TEST(TestStatus, mode){
