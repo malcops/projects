@@ -88,9 +88,11 @@ unsigned GoPro::getBatteryLevel(){
 }
 
 bool GoPro::sdCardInserted(){
+    // 0 - inserted
+    // 2 - not found
     auto j = nlohmann::json::parse(this->m_currentStatus.c_str());
     unsigned inserted = j["status"]["33"];
-    bool sdCardInserted = static_cast<bool>(inserted);
+    bool sdCardInserted = not static_cast<bool>(inserted);
     return sdCardInserted;
 }
 
