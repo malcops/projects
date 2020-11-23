@@ -2,9 +2,10 @@
 
 int main(void){
 
-    init();
+    MPU6050 imu;
+    imu.init();
     while(1){
-        MPU6050 imu;
+
         auto accels = imu.readAccelXYZ(); 
         char accelOutput[128];
         snprintf(accelOutput, sizeof(accelOutput), "accels %f %f %f\n", accels.accel_X, accels.accel_Y, accels.accel_Z);

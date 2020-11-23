@@ -1,6 +1,6 @@
 #include "IMU.hpp"
 
-int init(){
+int MPU6050::init(){
 
     const unsigned val[2] = {PWR_MGMT_1, 0};
     int f;
