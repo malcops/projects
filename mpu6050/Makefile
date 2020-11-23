@@ -5,7 +5,7 @@ CC=g++
 all: test example
 
 test:
-	$(CC) IMU.cpp test_IMU.cpp -lgtest -lpthread -o gtest
+	$(CC) MPU6050.cpp test_MPU6050.cpp -lgtest -lpthread -o gtest
 
 example:
-	$(CC) IMU.cpp main.cpp -o example
+	$(CC) MPU6050.cpp main.cpp -o example
