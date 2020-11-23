@@ -51,6 +51,13 @@ struct gyroXYZ_t {
     float gyro_Z;
 };
 
+class MPU6050 {
+    public:
+        accelXYZ_t readAccelXYZ(void);
+        gyroXYZ_t readGyroXYZ(void);
+        float readTemp(void);
+};
+
 int init();
 uint8_t readReg(uint8_t reg);
 
@@ -58,6 +65,6 @@ float accelConversion(int regVal);
 float gyroConversion(int regVal);
 float tempConversion(int regVal);
 
-accelXYZ_t readAccelXYZ();
-gyroXYZ_t readGyroXYZ();
-float readTemp();
+// accelXYZ_t readAccelXYZ();
+// gyroXYZ_t readGyroXYZ();
+// float readTemp();
