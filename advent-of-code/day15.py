@@ -48,20 +48,20 @@ def part_one(input_list):
 
 
 @pytest.mark.parametrize("test_input, expected", [
-                        (example1, 436),
-                        (example2, 1),
-                        (example3, 10),
-                        (example4, 27),
-                        (example5, 78),
-                        (example6, 438),
-                        (example7, 1836)
-                        # (example1, 175594),
-                        # (example2, 2578),
-                        # (example3, 3544142),
-                        # (example4, 261214),
-                        # (example5, 6895259),
-                        # (example6, 18),
-                        # (example7, 362)
+                        # (example1, 436),
+                        # (example2, 1),
+                        # (example3, 10),
+                        # (example4, 27),
+                        # (example5, 78),
+                        # (example6, 438),
+                        # (example7, 1836)
+                        (example1, 175594),
+                        (example2, 2578),
+                        (example3, 3544142),
+                        (example4, 261214),
+                        (example5, 6895259),
+                        (example6, 18),
+                        (example7, 362)
                          ])
 def test_part_two(test_input, expected):
 
@@ -70,17 +70,18 @@ def test_part_two(test_input, expected):
 
 def part_two(input_list):
 
-    max_index = 2020# change to 30M
+    # max_index = 2020
+    max_index = 30000000
     indexes = {x: "X" for x in range(0, max_index)}
 
     # last item will be processed below
     for idx, x in enumerate(input_list[:-1]):
         indexes[x] = idx + 1
 
-
     # e.g. if input_list has 3 items, we are starting turn 4
     turn = len(input_list) + 1
     last_added = input_list[-1]
+
     while turn <= max_index:
         if indexes[last_added] == "X":
             next_number = 0
@@ -88,13 +89,12 @@ def part_two(input_list):
             next_number = turn - 1 - indexes[last_added]
         indexes[last_added] = turn - 1
         last_added = next_number
-        input_list.append(next_number)
         turn += 1
-    print(input_list)
+    print("Part2: ", last_added)
     return last_added
 
 
 if __name__ == "__main__":
 
-    # part_one(input_list)
-    part_two(example1)
+    part_one(input_list)
+    part_two(input_list)
