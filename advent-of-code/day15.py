@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import pytest
+import time
 
 example1 = [0,3,6]
 example2 = [1,3,2]
@@ -27,34 +28,12 @@ def test_part_one(test_input, expected):
 
 def part_one(input_list):
 
-    working = input_list[:]
-    idx = len(input_list) + 1
-    while idx < 2018:
-        print(idx)
-        last = working[-1]
-        if working.count(last) <= 1:
-            working.append(0)
-        else:
-            previous_index = 0
-            for idx, val in enumerate(working[:-1]):
-                if working[idx] == last:
-                    previous_index = idx
-            last_index = len(working) - 1
-            working.append(last_index - previous_index)
-        idx += 1
-
-    print(working[-1])
-    return working[-1]
+    x = play_game(input_list, 2020)
+    print("Part1: ", x)
+    return x
 
 
 @pytest.mark.parametrize("test_input, expected", [
-                        # (example1, 436),
-                        # (example2, 1),
-                        # (example3, 10),
-                        # (example4, 27),
-                        # (example5, 78),
-                        # (example6, 438),
-                        # (example7, 1836)
                         (example1, 175594),
                         (example2, 2578),
                         (example3, 3544142),
@@ -70,8 +49,13 @@ def test_part_two(test_input, expected):
 
 def part_two(input_list):
 
-    # max_index = 2020
-    max_index = 30000000
+    x = play_game(input_list, 30000000)
+    print("Part2: ", x)
+    return x
+
+def play_game(input_list, max_index):
+
+    max_index = max_index
     indexes = {x: "X" for x in range(0, max_index)}
 
     # last item will be processed below
@@ -90,11 +74,18 @@ def part_two(input_list):
         indexes[last_added] = turn - 1
         last_added = next_number
         turn += 1
-    print("Part2: ", last_added)
+
     return last_added
 
 
 if __name__ == "__main__":
 
+    start = time.time()
     part_one(input_list)
+    stop = time.time()
+    print("time: ", stop - start)
+
+    start = time.time()
     part_two(input_list)
+    stop = time.time()
+    print("time: ", stop - start)
