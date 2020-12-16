@@ -82,7 +82,7 @@ def part_two(rules, valid_tickets):
     for t in valid_tickets:
         tickets.append(t.split(","))
 
-    mapping = {f: [] for f in rules_dict}
+    mapping = {f: 0 for f in rules_dict}
     indexes = []
     for idx, x in enumerate(tickets):
         indexes.append([int(r[idx]) for r in tickets])
@@ -93,42 +93,43 @@ def part_two(rules, valid_tickets):
 
     # iteration 1
     assigned = []
-    for field in rules_dict:
-        valid = []
-        for idx, nums in enumerate(indexes):
-            all_there = all(item in rules_dict[field] for item in nums)
-            if all_there:
-                print(idx, nums)
-                print(rules_dict[field])
-                valid.append(idx)
-                print(valid)
+    while len(assigned) < len(rules_dict):
+        for field in rules_dict:
+            valid = []
+            for idx, nums in enumerate(indexes):
+                all_there = all(item in rules_dict[field] for item in nums)
+                if all_there and (idx not in assigned):
+                    print(idx, nums)
+                    print(rules_dict[field])
+                    valid.append(idx)
+                    print(valid)
 
-        mapping[field] = valid
-        if len(valid) == 1:
-            assigned.append(valid[0])
-
-    print(mapping)
-    print(len(rules_dict))
-    print("assigned: ", assigned, len(assigned))
-
-    # iteration 2
-    for field in rules_dict:
-        valid = []
-        for idx, nums in enumerate(indexes):
-            all_there = all(item in rules_dict[field] for item in nums)
-            if all_there and (idx not in assigned):
-                print(idx, nums)
-                print(rules_dict[field])
-                valid.append(idx)
-                print(valid)
-
-        mapping[field] = valid
-        if len(valid) == 1:
-            assigned.append(valid[0])
+            if len(valid) == 1:
+                mapping[field] = valid[0]
+                assigned.append(valid[0])
 
     print(mapping)
     print(len(rules_dict))
     print("assigned: ", assigned, len(assigned))
+
+    # # iteration 2
+    # for field in rules_dict:
+    #     valid = []
+    #     for idx, nums in enumerate(indexes):
+    #         all_there = all(item in rules_dict[field] for item in nums)
+    #         if all_there and (idx not in assigned):
+    #             print(idx, nums)
+    #             print(rules_dict[field])
+    #             valid.append(idx)
+    #             print(valid)
+
+    #     mapping[field] = valid
+    #     if len(valid) == 1:
+    #         assigned.append(valid[0])
+
+    # print(mapping)
+    # print(len(rules_dict))
+    # print("assigned: ", assigned, len(assigned))
 
 
     return mapping
