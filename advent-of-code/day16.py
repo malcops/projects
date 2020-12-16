@@ -91,6 +91,7 @@ def part_two(rules, valid_tickets):
     print(tickets)
     print(indexes)
 
+    # iteration 1
     assigned = []
     for field in rules_dict:
         valid = []
@@ -107,7 +108,28 @@ def part_two(rules, valid_tickets):
             assigned.append(valid[0])
 
     print(mapping)
-    print(assigned)
+    print(len(rules_dict))
+    print("assigned: ", assigned, len(assigned))
+
+    # iteration 2
+    for field in rules_dict:
+        valid = []
+        for idx, nums in enumerate(indexes):
+            all_there = all(item in rules_dict[field] for item in nums)
+            if all_there and (idx not in assigned):
+                print(idx, nums)
+                print(rules_dict[field])
+                valid.append(idx)
+                print(valid)
+
+        mapping[field] = valid
+        if len(valid) == 1:
+            assigned.append(valid[0])
+
+    print(mapping)
+    print(len(rules_dict))
+    print("assigned: ", assigned, len(assigned))
+
 
     return mapping
 
