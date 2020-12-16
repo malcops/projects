@@ -11,6 +11,8 @@ with open('day16.txt', 'r') as f:
 
 rules = input_list[:input_list.index("your ticket:")]
 nearby_tickets = input_list[input_list.index("nearby tickets:")+1:]
+my_ticket = input_list[input_list.index("your ticket:")+1:input_list.index("nearby tickets:")]
+
 
 def part_one(rules, tickets):
 
@@ -62,7 +64,7 @@ def test_part_two(rules, tickets):
     assert mapping['seat'] == 2
 
 
-def part_two(rules, valid_tickets):
+def part_two(rules, valid_tickets, my_ticket):
 
     rules_dict = dict()
     for rule in rules:
@@ -82,16 +84,19 @@ def part_two(rules, valid_tickets):
     for t in valid_tickets:
         tickets.append(t.split(","))
 
+    print(len(tickets))
+    print(tickets[0])
     mapping = {f: 0 for f in rules_dict}
     indexes = []
-    for idx, x in enumerate(tickets):
+    for idx in range(len(tickets[0])):
+        print(idx)
+        print(tickets[0][idx])
         indexes.append([int(r[idx]) for r in tickets])
 
     print(rules_dict)
     print(tickets)
     print(indexes)
 
-    # iteration 1
     assigned = []
     while len(assigned) < len(rules_dict):
         for field in rules_dict:
@@ -112,26 +117,15 @@ def part_two(rules, valid_tickets):
     print(len(rules_dict))
     print("assigned: ", assigned, len(assigned))
 
-    # # iteration 2
-    # for field in rules_dict:
-    #     valid = []
-    #     for idx, nums in enumerate(indexes):
-    #         all_there = all(item in rules_dict[field] for item in nums)
-    #         if all_there and (idx not in assigned):
-    #             print(idx, nums)
-    #             print(rules_dict[field])
-    #             valid.append(idx)
-    #             print(valid)
+    # final calculation
+    departure_idxs = [mapping[x] for x in mapping if x.startswith('departure')]
+    print(departure_idxs)
 
-    #     mapping[field] = valid
-    #     if len(valid) == 1:
-    #         assigned.append(valid[0])
+    product = 1
+    for idx in departure_idxs:
+        product *= int(my_ticket[0].split(",")[idx])
 
-    # print(mapping)
-    # print(len(rules_dict))
-    # print("assigned: ", assigned, len(assigned))
-
-
+    print("Part 2: ", product)
     return mapping
 
 
@@ -139,4 +133,5 @@ def part_two(rules, valid_tickets):
 if __name__ == "__main__":
 
     valid_tickets = part_one(rules, nearby_tickets)
-    part_two(rules, valid_tickets)
+    print(my_ticket)
+    part_two(rules, valid_tickets, my_ticket)
