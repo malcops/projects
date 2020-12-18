@@ -19,7 +19,7 @@ def test_evaluate_lr(expression, result):
 	assert evaluate_lr(expression) == result
 
 
-def evaluate_lr(expression):
+def evaluate_expression_lr(expression):
     OPERATION_RE = r"[0-9]+ [+*] [0-9]+"
 
     while re.search(OPERATION_RE, expression):
@@ -37,19 +37,19 @@ def evaluate_lr(expression):
                          ("5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))", 12240),
                          ("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2", 13632)
                          ])
-def test_evaluate(expression, result):
+def test_evaluate_lr(expression, result):
 
-	assert evaluate(expression) == result
+	assert evaluate_lr(expression) == result
 
 
-def evaluate(expression):
+def evaluate_lr(expression):
 
     BRACKETS_RE = r"(\([0-9+* ]+\))"
     while re.search(BRACKETS_RE, expression):
         x = re.search(BRACKETS_RE, expression)
         brackets = x.group(0)
         inside_brackets = brackets[1:-1]
-        repl = str(evaluate_lr(inside_brackets))
+        repl = str(evaluate_expression_lr(inside_brackets))
         expression = re.sub(BRACKETS_RE, repl, expression, 1)
 
     OPERATION_RE = r"[0-9]+ [+*] [0-9]+"
@@ -65,7 +65,7 @@ def part_one(input_list):
 
     count = 0
     for exp in input_list:
-        count += evaluate(exp)
+        count += evaluate_lr(exp)
 
     print("Part 1: ", count)
 
