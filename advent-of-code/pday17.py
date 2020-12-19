@@ -131,48 +131,49 @@ def part_one(input_list):
 
 
 def part_two(input_list):
-    a = np.array(input_list, ndmin=4)
-    a_slice = np.full_like(a, fill_value=0)
-    array = np.concatenate([a_slice, a, a_slice], 0)
-    print(array.shape)
-
+    # a = np.array(input_list, ndmin=4)
+    # print(a.shape)
+    # a_slice = np.full_like(a, fill_value=0)
+    # array = np.concatenate([a_slice, a, a_slice], 0)
+    # print(array.shape)
+    # array = np.concatenate([a_slice, array, a_slice], 0)
+    # print(array.shape)
+    # array = np.concatenate([a_slice, array, a_slice], 0)
+    # print(array.shape)
+    # array = np.concatenate([array, a_slice], 0)
+    # print(array.shape)
+    # array = np.concatenate([a_slice, array, a_slice], 3)
+    # print(array.shape)
+    print(len(input_list))
+    size_tuple = (len(input_list), len(input_list), len(input_list), len(input_list))
+    print(size_tuple)
+    array = np.zeros(size_tuple, dtype=int)
+    input_array = np.array(input_list, ndmin=2)
+    array[:][:][2][2] = input_array
+    array = grow_by_one(array)
+    array = grow_by_one(array)
+    array = grow_by_one(array)
     it = 0
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
-    array = grow_by_one(array)
     print(array.shape)
-    return
     array = process_4d(array)
     count = np.count_nonzero(array)
     print(count)
     it = 1
     array = grow_by_one(array)
-    array = process_cube(array)
+    array = process_4d(array)
     count = np.count_nonzero(array)
     print(count)
     it = 2
-
-
-
     while it != 6:
         print("Iteration: ", it)
         array = grow_by_one(array)
-        array = process_cube(array)
+        array = process_4d(array)
         it += 1  
     count = np.count_nonzero(array)
     print(array.shape)
-    print("Part1: ", count)
+    print("Part2: ", count)
+    # 1432 - too high
+    # 1392
     return count
     
 
@@ -180,4 +181,4 @@ def part_two(input_list):
 if __name__ == "__main__":
 
     part_one(input1)
-    # part_two(input1)
+    part_two(input1)
