@@ -32,12 +32,12 @@ def process_cube(cube):
                     count = np.count_nonzero(cube[x-1:x+2, y-1:y+2, z-1:z+2]) # for the current cube
                     print(count-1)
                     if count-1 not in (2,3):
-                        print('active next cycle = false')
+                        print('turning off: ', x,y,z)
                         new_cube[x][y][z] = 0
                 else:
                     count = np.count_nonzero(cube[x-1:x+2, y-1:y+2, z-1:z+2])
                     if count == 3:
-                        print("going active",x,z,y)
+                        print("turning on: ", x,y,z)
                         new_cube[x][y][z] = 1
     
     return new_cube
@@ -65,18 +65,36 @@ def grow_by_one(array):
 def part_one(input_list):
     a = np.array(input_list, ndmin=3)
     a_slice = np.full_like(a, fill_value=0)
-    start_array = np.concatenate([a_slice, a, a_slice], 0)
-    print(start_array.shape)
-    start_array = grow_by_one(start_array)
-    start_array = process_cube(start_array)
+    array = np.concatenate([a_slice, a, a_slice], 0)
+    assert np.count_nonzero(array) == 24
+    it = 0
+    array = grow_by_one(array)
+    array = grow_by_one(array)
+    array = grow_by_one(array)
+    array = grow_by_one(array)
+    array = grow_by_one(array)
+    array = process_cube(array)
+    count = np.count_nonzero(array)
+    print(count)
+    assert np.count_nonzero(array) == 77
     it = 1
+
+    array = grow_by_one(array)
+    array = process_cube(array)
+    count = np.count_nonzero(array)
+    print(count)
+    assert np.count_nonzero(array) == 66
+    it = 2
+
+
+
     while it != 6:
-        start_array = grow_by_one(start_array)
-        start_array = process_cube(start_array)
+        print("Iteration: ", it)
+        array = grow_by_one(array)
+        array = process_cube(array)
         it += 1  
-    count = np.count_nonzero(start_array)
+    count = np.count_nonzero(array)
     print("Part1: ", count)
-    # 153 - too low
     return count
 
 
@@ -87,6 +105,5 @@ def part_two(input_list):
 
 if __name__ == "__main__":
 
-    # part_one(example1)
     part_one(input1)
     part_two(input1)
