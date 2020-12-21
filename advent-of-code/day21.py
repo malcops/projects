@@ -81,7 +81,13 @@ def part_one(input_list):
             if len(my_dict[a]) == 1:
                 assigned[a] = my_dict[a][0]
                 dangerous_ingredients.remove(my_dict[a][0])
-        print(assigned)
+
+    sorted_allergens = list(sorted(k for k in assigned))
+    print(sorted_allergens)
+    cdi = ""
+    for a in sorted_allergens:
+        cdi += assigned[a]+","
+    print(cdi)
 
 
 
