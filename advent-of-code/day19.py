@@ -13,7 +13,8 @@ with open('day19.txt', 'r') as f:
                 if '|' not in item:
                     rhs = item.split(": ")[1].replace("\"", "")
                 else:
-                    rhs = "(" + item.split(": ")[1].replace("\"", "") + ")"
+                    rhs = item.split(": ")[1].replace("\"", "")
+                    # rhs = "(" + item.split(": ")[1].replace("\"", "") + ")"
                 rules[lhs] = rhs
             else:
                 messages.append(item)
@@ -22,10 +23,10 @@ print(rules)
 # print(messages)
 
 example0_rules = {0: "1 2", 1: "a",
-                  2: "(1 3 | 3 1)", 3: "b"}
+                  2: "1 3 | 3 1", 3: "b"}
 
-example1_rules = {0: "4 1 5", 1: "(2 3 | 3 2)",
-                  2: "(4 4 | 5 5)", 3: "(4 5 | 5 4)",
+example1_rules = {0: "4 1 5", 1: "2 3 | 3 2",
+                  2: "4 4 | 5 5", 3: "4 5 | 5 4",
                   4: "a", 5: "b"}
 
 @pytest.mark.parametrize("rules, msg, validity", [
@@ -41,48 +42,32 @@ example1_rules = {0: "4 1 5", 1: "(2 3 | 3 2)",
                          ])
 def test_check_message(rules, msg, validity):
 
-    assert check_message(rules, msg) == validity
+    regex = evaluate(rules, 0)
+    MESSAGE_RE = r"^{}$".format(regex)   
+    assert bool(re.match(MESSAGE_RE, msg)) == validity
 
 
-def check_message(rules, msg):
-
-    rules_sub = dict(rules)
-    FINISHED_RE = re.compile(r"(^([ a-z|)(])+$)")
-    for idx, char in enumerate(rules_sub[0].split(" ")):
-        print(idx, char)
-
-    # (Pdb) print(rules[0])
-    # (29 104 | 115 95) (29 104 | 115 95) (95 7 | 104 130)
-    # (Pdb) step
-    # > /home/paul/BBB-projects/advent-of-code/day19.py(57)check_message()
-    # -> if char.isnumeric():
-    # (Pdb) print(idx)
-    # 0
-    # (Pdb) print(char)
-    # (29
-
-    print("starting rules: ", rules[0])
-    while not FINISHED_RE.match(rules[0]):
-    # while not re.match(FINISHED_RE, rules_sub[0]):
-        for char in set([x for x in re.findall(r"\b\d+\b", rules[0])]): # maybe can make this a set
-            if '|' in rules[int(char)]:
-                str_to_add = "(" + rules[int(char)] + ")"
-            else:
-                str_to_add = rules[int(char)]
-            rules_sub[0] = rules_sub[0].replace(char, str_to_add)
-        rules = rules_sub
-
-    regex_string = rules_sub[0].replace(" ", "")
-    print(regex_string)
-
-    MESSAGE_RE = r"^{}$".format(regex_string)
-
-    return bool(re.match(MESSAGE_RE, msg))
+def evaluate(rules, idx):
+    '''returns regex string of rules dictionary'''
+    if rules[idx] in ["a", "b"]:
+        return rules[idx]
+    parts = rules[idx].split(" | ")
+    for j,p in enumerate(parts):
+        parts[j] = '(' + ''.join(evaluate(rules, int(n)) for n in p.split()) + ')'
+    return '(' + '|'.join(parts) + ')'
 
 
 def part_one(rules_dict, msg_list):
 
-    check_message(rules_dict, msg_list[0])
+    regex_string = evaluate(rules_dict, 0)
+    print(regex_string)
+
+    MESSAGE_RE = r"^{}$".format(regex_string)
+    count = 0
+    for msg in msg_list:
+        if re.match(MESSAGE_RE, msg):
+            count += 1
+
     print("Part1: ", count)
 
 
