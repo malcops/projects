@@ -87,14 +87,15 @@ def part_one(input_list):
     cdi = ""
     for a in sorted_allergens:
         cdi += assigned[a]+","
-    print(cdi)
+    cdi = cdi.rstrip(",")
+    print("Part2 :", cdi)
 
 
 
 if __name__ == "__main__":
 
     start = time.time()
-    part_one(example)
+    part_one(foods)
     stop = time.time()
     print("time: ", stop - start)
 
