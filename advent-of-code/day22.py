@@ -30,6 +30,11 @@ round8_p2 = [7,3,10,1]
 round9_p1 = [4,9,8,5,2]
 round9_p2 = [3,10,1,7,6]
 
+# infinite game rule
+
+inf_p1 = [43,19]
+inf_p2 = [2,29,14]
+
 
 input_list = []
 with open('day22.txt', 'r') as f:
@@ -43,44 +48,47 @@ deck1 = [int(x) for x in input_list[1:p2_start]]
 deck2 = [int(x) for x in input_list[p2_start+1:]]
 
 
-@pytest.mark.parametrize("deck1, deck2, deck1_after, deck2_after", [
-                        (round1_p1, round1_p2, round2_p1, round2_p2),
-                        (round2_p1, round2_p2, round3_p1, round3_p2),
-                        (round3_p1, round3_p2, round4_p1, round4_p2),
-                        (round4_p1, round4_p2, round5_p1, round5_p2),
-                        (round5_p1, round5_p2, round6_p1, round6_p2),
-                        (round6_p1, round6_p2, round7_p1, round7_p2),
+@pytest.mark.parametrize("deck1, deck2, deck1_after, deck2_after, winner", [
+                        (round1_p1, round1_p2, round2_p1, round2_p2, 1),
+                        (round2_p1, round2_p2, round3_p1, round3_p2, 2),
+                        (round3_p1, round3_p2, round4_p1, round4_p2, 1),
+                        (round4_p1, round4_p2, round5_p1, round5_p2, 2),
+                        (round5_p1, round5_p2, round6_p1, round6_p2, 2),
+                        (round6_p1, round6_p2, round7_p1, round7_p2, 1),
                          ])
-def test_play_round(deck1, deck2, deck1_after, deck2_after):
+def test_play_round(deck1, deck2, deck1_after, deck2_after, winner):
 
-    d1, d2 = play_round(deck1, deck2)
+    d1, d2, w = play_round(deck1, deck2)
     assert d1 == deck1_after
     assert d2 == deck2_after
+    assert w == winner
 
 
 def play_round(deck1, deck2):
 
-
+    winner = 0
     if deck1[0] > deck2[0]:
+        winner = 1
         deck1.append(deck1.pop(0))
         deck1.append(deck2.pop(0))
     else:
+        winner = 2
         deck2.append(deck2.pop(0))
         deck2.append(deck1.pop(0))
 
-    return deck1, deck2
+    return deck1, deck2, winner
 
 
 @pytest.mark.parametrize("deck1, deck2, deck1_after, deck2_after", [
                         (round1_p1, round1_p2, round2_p1, round2_p2),
-                        (round2_p1, round2_p2, round3_p1, round3_p2),
-                        (round3_p1, round3_p2, round4_p1, round4_p2),
-                        (round4_p1, round4_p2, round5_p1, round5_p2),
-                        (round5_p1, round5_p2, round6_p1, round6_p2),
-                        (round6_p1, round6_p2, round7_p1, round7_p2),
-                        (round7_p1, round7_p2, round8_p1, round8_p2),
-                        (round8_p1, round8_p2, round9_p1, round9_p2),
-                        (round9_p1, round9_p2, None, None),
+                        # (round2_p1, round2_p2, round3_p1, round3_p2),
+                        # (round3_p1, round3_p2, round4_p1, round4_p2),
+                        # (round4_p1, round4_p2, round5_p1, round5_p2),
+                        # (round5_p1, round5_p2, round6_p1, round6_p2),
+                        # (round6_p1, round6_p2, round7_p1, round7_p2),
+                        # (round7_p1, round7_p2, round8_p1, round8_p2),
+                        # (round8_p1, round8_p2, round9_p1, round9_p2),
+                        # (round9_p1, round9_p2, None, None),
                          ])
 def test_play_recursive_combat(deck1, deck2, deck1_after, deck2_after):
     d1, d2 = play_recursive_combat(deck1, deck2)
@@ -90,33 +98,50 @@ def test_play_recursive_combat(deck1, deck2, deck1_after, deck2_after):
 
 def play_recursive_combat(deck1, deck2):
 
-    print(deck1, deck2)
-
     winner = 0
-    prev_hands = []
-    hand = hash(str(deck1 + deck2))
-    # TODO
-    if hand in prev_hands:
-        print("Deck1 wins")
-        return deck1, deck2, 1
-    else:
-        prev_hands.append(hand)
-
+    prev_hands = set()
+    round = 1
+    
     while deck1 and deck2:
-        if deck1[0] < len(deck1) and deck2[0] < len(deck2):
-            print("Recursive combat")
-            d1, d2 = play_recursive_combat(deck1[1:1+deck1[0]], deck2[1:1+deck2[0]])
+        hand = (tuple(deck1), tuple(deck2))
+        if hand in prev_hands:
+            print("Deck1 wins by default")
+            print(calculate_score(deck1))
+            winner = 1
+            return deck1, deck2, winner
         else:
-            d1, d2 = play_round(deck1, deck2)
+            prev_hands.add(hand)
+
+        if deck1[0] < len(deck1) and deck2[0] < len(deck2):
+            _, _, w = play_recursive_combat(deck1[1:1+deck1[0]], deck2[1:1+deck2[0]])
+            if winner == 1:
+                deck1.append(deck1.pop(0))
+                deck1.append(deck2.pop(0))
+            else:
+                deck2.append(deck2.pop(0))
+                deck2.append(deck1.pop(0))
+        else:
+            deck1, deck2, w = play_round(deck1, deck2)
+        round += 1
+
+    for h in prev_hands:
+        print(h)
 
     if deck1:
+        winner = 1
         print("Deck1 wins")
+        print(round)
+        print(deck1, deck2)
         print(calculate_score(deck1))
     else:
+        winner = 2
         print("Deck2 wins")
+        print(round)
+        print(deck1, deck2)
         print(calculate_score(deck2))
 
-    return deck1, deck2   
+    return deck1, deck2, winner
+
 
 def calculate_score(deck):
 
@@ -149,17 +174,19 @@ def play_game(deck1, deck2):
 
 def part_two(deck1, deck2):
     
-    play_recursive_combat(deck1, deck2)
+    d1, d2, w = play_recursive_combat(deck1, deck2)
 
 
 if __name__ == "__main__":
 
-    start = time.time()
-    part_one(deck1, deck2)
-    stop = time.time()
-    print("time: ", stop - start)
+    # start = time.time()
+    # part_one(deck1, deck2)
+    # stop = time.time()
+    # print("time: ", stop - start)
 
     start = time.time()
-    part_two(deck1, deck2)
+    # part_two(inf_p1, inf_p2)
+    part_two(round1_p1, round1_p2)
+    # part_two(deck1, deck2)
     stop = time.time()
     print("time: ", stop - start)
