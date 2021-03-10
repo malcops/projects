@@ -10,3 +10,6 @@ test:
 
 dna:
 	$(CXX) DNA/DNA.cpp -o DNA/dna
+
+rna:
+	$(CXX) RNA/RNA.cpp -o RNA/rna
