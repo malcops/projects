@@ -13,3 +13,6 @@ dna:
 
 rna:
 	$(CXX) RNA/RNA.cpp -o RNA/rna
+
+revc:
+	$(CXX) REVC/REVC.cpp -o REVC/revc
