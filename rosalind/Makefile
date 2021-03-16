@@ -1,9 +1,9 @@
 CXX=g++
 GTEST_FLAGS=-lgtest -lpthread
 
-.PHONY: dna rna revc gc hamm prot prtm
+.PHONY: dna rna revc gc hamm prot prtm fib
 
-all: dna rna revc gc hamm prot prtm
+all: dna rna revc gc hamm prot prtm fib
 
 dna:
 	$(CXX) DNA/DNA.cpp -o DNA/dna
@@ -25,3 +25,6 @@ prot:
 
 prtm:
 	$(CXX) PRTM/PRTM.cpp -o PRTM/prtm
+
+fib:
+	$(CXX) FIB/FIB.cpp -o FIB/fib
