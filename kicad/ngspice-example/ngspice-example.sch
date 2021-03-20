@@ -1,0 +1,134 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:R_Small R1
+U 1 1 6055048C
+P 3950 2700
+F 0 "R1" V 3754 2700 50  0000 C CNN
+F 1 "10k" V 3845 2700 50  0000 C CNN
+F 2 "" H 3950 2700 50  0001 C CNN
+F 3 "~" H 3950 2700 50  0001 C CNN
+	1    3950 2700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R2
+U 1 1 60550D4A
+P 5200 2700
+F 0 "R2" V 5004 2700 50  0000 C CNN
+F 1 "1k" V 5095 2700 50  0000 C CNN
+F 2 "" H 5200 2700 50  0001 C CNN
+F 3 "~" H 5200 2700 50  0001 C CNN
+	1    5200 2700
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5300 2700 5800 2700
+Wire Wire Line
+	5800 2700 5800 3000
+Wire Wire Line
+	5100 2700 4600 2700
+Wire Wire Line
+	4600 3000 4600 2700
+Connection ~ 4600 2700
+Wire Wire Line
+	4600 2700 4050 2700
+Text GLabel 5800 2700 2    50   Output ~ 0
+ref
+Text GLabel 3450 2700 0    50   Input ~ 0
+input
+Wire Wire Line
+	3450 2700 3650 2700
+$Comp
+L pspice:VSOURCE V1
+U 1 1 6055295D
+P 3650 3200
+F 0 "V1" H 3878 3246 50  0000 L CNN
+F 1 "dc 0 ac 1" H 3878 3155 50  0000 L CNN
+F 2 "" H 3650 3200 50  0001 C CNN
+F 3 "~" H 3650 3200 50  0001 C CNN
+	1    3650 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 2900 3650 2700
+Connection ~ 3650 2700
+Wire Wire Line
+	3650 2700 3850 2700
+$Comp
+L Device:C C1
+U 1 1 605550C4
+P 4600 3150
+F 0 "C1" H 4715 3196 50  0000 L CNN
+F 1 "1u" H 4715 3105 50  0000 L CNN
+F 2 "" H 4638 3000 50  0001 C CNN
+F 3 "~" H 4600 3150 50  0001 C CNN
+	1    4600 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 60555748
+P 5800 3150
+F 0 "C2" H 5915 3196 50  0000 L CNN
+F 1 "100n" H 5915 3105 50  0000 L CNN
+F 2 "" H 5838 3000 50  0001 C CNN
+F 3 "~" H 5800 3150 50  0001 C CNN
+	1    5800 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND02
+U 1 1 60556144
+P 4600 3500
+F 0 "#GND02" H 4600 3400 50  0001 C CNN
+F 1 "0" H 4700 3450 50  0000 C CNN
+F 2 "" H 4600 3500 50  0001 C CNN
+F 3 "~" H 4600 3500 50  0001 C CNN
+	1    4600 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND01
+U 1 1 6055651E
+P 3650 3650
+F 0 "#GND01" H 3650 3550 50  0001 C CNN
+F 1 "0" H 3750 3600 50  0000 C CNN
+F 2 "" H 3650 3650 50  0001 C CNN
+F 3 "~" H 3650 3650 50  0001 C CNN
+	1    3650 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 3650 3650 3500
+Wire Wire Line
+	4600 3300 4600 3500
+$Comp
+L pspice:0 #GND03
+U 1 1 60555ACA
+P 5800 3500
+F 0 "#GND03" H 5800 3400 50  0001 C CNN
+F 1 "0" H 5900 3450 50  0000 C CNN
+F 2 "" H 5800 3500 50  0001 C CNN
+F 3 "~" H 5800 3500 50  0001 C CNN
+	1    5800 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5800 3500 5800 3300
+Text Notes 3400 3900 0    50   ~ 0
+.ac dec 10 1 100k
+$EndSCHEMATC
