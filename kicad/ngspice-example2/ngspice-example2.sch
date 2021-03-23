@@ -1,0 +1,226 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text GLabel 1500 3500 0    50   Input ~ 0
+in
+$Comp
+L pspice:C C1
+U 1 1 6059B40C
+P 2200 3500
+F 0 "C1" V 1885 3500 50  0000 C CNN
+F 1 "10u" V 1976 3500 50  0000 C CNN
+F 2 "" H 2200 3500 50  0001 C CNN
+F 3 "~" H 2200 3500 50  0001 C CNN
+	1    2200 3500
+	0    1    1    0   
+$EndComp
+$Comp
+L pspice:C C2
+U 1 1 6059BEFF
+P 4150 3250
+F 0 "C2" V 3835 3250 50  0000 C CNN
+F 1 "10u" V 3926 3250 50  0000 C CNN
+F 2 "" H 4150 3250 50  0001 C CNN
+F 3 "~" H 4150 3250 50  0001 C CNN
+	1    4150 3250
+	0    1    1    0   
+$EndComp
+$Comp
+L pspice:R R2
+U 1 1 6059C4AF
+P 2800 4050
+F 0 "R2" H 2868 4096 50  0000 L CNN
+F 1 "10k" H 2868 4005 50  0000 L CNN
+F 2 "" H 2800 4050 50  0001 C CNN
+F 3 "~" H 2800 4050 50  0001 C CNN
+	1    2800 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:R R3
+U 1 1 6059CDCE
+P 3350 2600
+F 0 "R3" H 3418 2646 50  0000 L CNN
+F 1 "10k" H 3418 2555 50  0000 L CNN
+F 2 "" H 3350 2600 50  0001 C CNN
+F 3 "~" H 3350 2600 50  0001 C CNN
+	1    3350 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:R R1
+U 1 1 6059D106
+P 2800 2600
+F 0 "R1" H 2868 2646 50  0000 L CNN
+F 1 "68k" H 2868 2555 50  0000 L CNN
+F 2 "" H 2800 2600 50  0001 C CNN
+F 3 "~" H 2800 2600 50  0001 C CNN
+	1    2800 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:R R4
+U 1 1 6059F320
+P 4400 4000
+F 0 "R4" H 4468 4046 50  0000 L CNN
+F 1 "100k" H 4468 3955 50  0000 L CNN
+F 2 "" H 4400 4000 50  0001 C CNN
+F 3 "~" H 4400 4000 50  0001 C CNN
+	1    4400 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:VSOURCE V1
+U 1 1 6059FF88
+P 5900 4050
+F 0 "V1" H 6128 4096 50  0000 L CNN
+F 1 "5" H 6128 4005 50  0000 L CNN
+F 2 "" H 5900 4050 50  0001 C CNN
+F 3 "~" H 5900 4050 50  0001 C CNN
+	1    5900 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:VSOURCE V2
+U 1 1 605A0468
+P 7050 4050
+F 0 "V2" H 7278 4096 50  0000 L CNN
+F 1 "dc 0 ac 1" H 7278 4005 50  0000 L CNN
+F 2 "" H 7050 4050 50  0001 C CNN
+F 3 "~" H 7050 4050 50  0001 C CNN
+	1    7050 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1500 3500 1950 3500
+Wire Wire Line
+	2800 3800 2800 3500
+Wire Wire Line
+	2450 3500 2800 3500
+Connection ~ 2800 3500
+Wire Wire Line
+	2800 3500 2800 2850
+Wire Wire Line
+	3350 2850 3350 3250
+Wire Wire Line
+	3350 3250 3900 3250
+Wire Wire Line
+	4400 3750 4400 3250
+$Comp
+L pspice:0 #GND01
+U 1 1 605A2AAB
+P 2800 4800
+F 0 "#GND01" H 2800 4700 50  0001 C CNN
+F 1 "0" H 2800 4889 50  0000 C CNN
+F 2 "" H 2800 4800 50  0001 C CNN
+F 3 "~" H 2800 4800 50  0001 C CNN
+	1    2800 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND02
+U 1 1 605A2DF1
+P 3350 4800
+F 0 "#GND02" H 3350 4700 50  0001 C CNN
+F 1 "0" H 3350 4889 50  0000 C CNN
+F 2 "" H 3350 4800 50  0001 C CNN
+F 3 "~" H 3350 4800 50  0001 C CNN
+	1    3350 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND03
+U 1 1 605A3162
+P 4400 4800
+F 0 "#GND03" H 4400 4700 50  0001 C CNN
+F 1 "0" H 4400 4889 50  0000 C CNN
+F 2 "" H 4400 4800 50  0001 C CNN
+F 3 "~" H 4400 4800 50  0001 C CNN
+	1    4400 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND04
+U 1 1 605A44BE
+P 5900 4800
+F 0 "#GND04" H 5900 4700 50  0001 C CNN
+F 1 "0" H 5900 4889 50  0000 C CNN
+F 2 "" H 5900 4800 50  0001 C CNN
+F 3 "~" H 5900 4800 50  0001 C CNN
+	1    5900 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND05
+U 1 1 605A48C2
+P 7050 4800
+F 0 "#GND05" H 7050 4700 50  0001 C CNN
+F 1 "0" H 7050 4889 50  0000 C CNN
+F 2 "" H 7050 4800 50  0001 C CNN
+F 3 "~" H 7050 4800 50  0001 C CNN
+	1    7050 4800
+	1    0    0    -1  
+$EndComp
+Text GLabel 5900 3300 1    50   Input ~ 0
+vcc
+Text GLabel 7050 3300 1    50   Input ~ 0
+in
+Text GLabel 3350 2050 1    50   Input ~ 0
+vcc
+Text GLabel 2800 2050 1    50   Input ~ 0
+vcc
+Wire Wire Line
+	2800 2050 2800 2350
+Wire Wire Line
+	3350 2050 3350 2350
+Wire Wire Line
+	2800 4300 2800 4800
+Wire Wire Line
+	4400 4250 4400 4800
+Wire Wire Line
+	5900 4350 5900 4800
+Wire Wire Line
+	7050 4800 7050 4350
+Wire Wire Line
+	5900 3300 5900 3750
+Wire Wire Line
+	7050 3300 7050 3750
+$Comp
+L Transistor_BJT:BC546 Q1
+U 1 1 605A819B
+P 3250 3500
+F 0 "Q1" H 3441 3546 50  0000 L CNN
+F 1 "BC546" H 3441 3455 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 3450 3425 50  0001 L CIN
+F 3 "http://www.fairchildsemi.com/ds/BC/BC547.pdf" H 3250 3500 50  0001 L CNN
+F 4 "Q" H 3250 3500 50  0001 C CNN "Spice_Primitive"
+F 5 "BC546" H 3250 3500 50  0001 C CNN "Spice_Model"
+F 6 "Y" H 3250 3500 50  0001 C CNN "Spice_Netlist_Enabled"
+F 7 "BC546.lib" H 3250 3500 50  0001 C CNN "Spice_Lib_File"
+	1    3250 3500
+	1    0    0    -1  
+$EndComp
+Connection ~ 3350 3250
+Wire Wire Line
+	3350 3300 3350 3250
+Wire Wire Line
+	2800 3500 3050 3500
+Wire Wire Line
+	3350 3700 3350 4800
+Text Notes 2200 4250 2    50   ~ 0
+.ac dec 10 10 1000k
+Text GLabel 4400 3250 2    50   Input ~ 0
+out
+$EndSCHEMATC
