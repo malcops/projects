@@ -1,0 +1,352 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:R R1
+U 1 1 605A9640
+P 3950 2350
+F 0 "R1" H 4020 2396 50  0000 L CNN
+F 1 "10k" H 4020 2305 50  0000 L CNN
+F 2 "" V 3880 2350 50  0001 C CNN
+F 3 "~" H 3950 2350 50  0001 C CNN
+	1    3950 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 605A9BEF
+P 4950 2350
+F 0 "R2" H 5020 2396 50  0000 L CNN
+F 1 "4.7k" H 5020 2305 50  0000 L CNN
+F 2 "" V 4880 2350 50  0001 C CNN
+F 3 "~" H 4950 2350 50  0001 C CNN
+	1    4950 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 605A9FBD
+P 4950 3050
+F 0 "R3" H 5020 3096 50  0000 L CNN
+F 1 "4.7k" H 5020 3005 50  0000 L CNN
+F 2 "" V 4880 3050 50  0001 C CNN
+F 3 "~" H 4950 3050 50  0001 C CNN
+	1    4950 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 605AA4FC
+P 5700 2350
+F 0 "C1" H 5815 2396 50  0000 L CNN
+F 1 "220u" H 5815 2305 50  0000 L CNN
+F 2 "" H 5738 2200 50  0001 C CNN
+F 3 "~" H 5700 2350 50  0001 C CNN
+	1    5700 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 605AB458
+P 5700 3050
+F 0 "C2" H 5815 3096 50  0000 L CNN
+F 1 "220u" H 5815 3005 50  0000 L CNN
+F 2 "" H 5738 2900 50  0001 C CNN
+F 3 "~" H 5700 3050 50  0001 C CNN
+	1    5700 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D1
+U 1 1 605ABA7C
+P 3950 3050
+F 0 "D1" V 3989 2933 50  0000 R CNN
+F 1 "LED" V 3898 2933 50  0000 R CNN
+F 2 "" H 3950 3050 50  0001 C CNN
+F 3 "~" H 3950 3050 50  0001 C CNN
+	1    3950 3050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L pspice:0 #GND01
+U 1 1 605AE3FD
+P 6350 2750
+F 0 "#GND01" H 6350 2650 50  0001 C CNN
+F 1 "0" H 6400 2650 50  0000 C CNN
+F 2 "" H 6350 2750 50  0001 C CNN
+F 3 "~" H 6350 2750 50  0001 C CNN
+	1    6350 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 2100 3950 2200
+Wire Wire Line
+	3950 2100 4950 2100
+Wire Wire Line
+	4950 2100 4950 2200
+Wire Wire Line
+	4950 2100 5700 2100
+Wire Wire Line
+	5700 2100 5700 2200
+Connection ~ 4950 2100
+Wire Wire Line
+	3950 2500 3950 2900
+Wire Wire Line
+	4950 2500 4950 2700
+Wire Wire Line
+	5700 2500 5700 2700
+Wire Wire Line
+	3950 3450 3950 3200
+Wire Wire Line
+	3950 3450 4950 3450
+Wire Wire Line
+	4950 3450 4950 3200
+Wire Wire Line
+	5700 3200 5700 3450
+Wire Wire Line
+	5700 3450 4950 3450
+Connection ~ 4950 3450
+Wire Wire Line
+	6350 2750 6350 2700
+Wire Wire Line
+	6350 2700 5700 2700
+Connection ~ 5700 2700
+Wire Wire Line
+	5700 2700 5700 2900
+Wire Wire Line
+	4950 2700 5700 2700
+Connection ~ 4950 2700
+Wire Wire Line
+	4950 2700 4950 2900
+Text Notes 1350 2100 2    50   ~ 0
+Power Section
+Text Notes 1500 4150 2    50   ~ 0
+Amplifier Section
+$Comp
+L Device:C C3
+U 1 1 605B6860
+P 1800 4500
+F 0 "C3" H 1915 4546 50  0000 L CNN
+F 1 "0.1u" H 1915 4455 50  0000 L CNN
+F 2 "" H 1838 4350 50  0001 C CNN
+F 3 "~" H 1800 4500 50  0001 C CNN
+	1    1800 4500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 605B72A2
+P 2200 5000
+F 0 "R4" H 2270 5046 50  0000 L CNN
+F 1 "100k" H 2270 4955 50  0000 L CNN
+F 2 "" V 2130 5000 50  0001 C CNN
+F 3 "~" H 2200 5000 50  0001 C CNN
+	1    2200 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R6
+U 1 1 605B8356
+P 3500 5350
+F 0 "R6" H 3570 5396 50  0000 L CNN
+F 1 "10k" H 3570 5305 50  0000 L CNN
+F 2 "" V 3430 5350 50  0001 C CNN
+F 3 "~" H 3500 5350 50  0001 C CNN
+	1    3500 5350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1100 4500 1650 4500
+Wire Wire Line
+	2200 4500 2200 4850
+$Comp
+L pspice:0 #GND03
+U 1 1 605BBA44
+P 2200 5600
+F 0 "#GND03" H 2200 5500 50  0001 C CNN
+F 1 "0" H 2250 5500 50  0000 C CNN
+F 2 "" H 2200 5600 50  0001 C CNN
+F 3 "~" H 2200 5600 50  0001 C CNN
+	1    2200 5600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 5600 2200 5150
+Wire Wire Line
+	2700 4750 2550 4750
+Wire Wire Line
+	2550 4750 2550 4500
+Wire Wire Line
+	2550 4500 2200 4500
+Connection ~ 2200 4500
+$Comp
+L Device:R R7
+U 1 1 605C0678
+P 3800 4850
+F 0 "R7" H 3870 4896 50  0000 L CNN
+F 1 "1" H 3870 4805 50  0000 L CNN
+F 2 "" V 3730 4850 50  0001 C CNN
+F 3 "~" H 3800 4850 50  0001 C CNN
+	1    3800 4850
+	0    1    1    0   
+$EndComp
+$Comp
+L pspice:0 #GND02
+U 1 1 605C2C1B
+P 1100 5600
+F 0 "#GND02" H 1100 5500 50  0001 C CNN
+F 1 "0" H 1150 5500 50  0000 C CNN
+F 2 "" H 1100 5600 50  0001 C CNN
+F 3 "~" H 1100 5600 50  0001 C CNN
+	1    1100 5600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 3700 3950 3450
+Connection ~ 3950 3450
+$Comp
+L pspice:VSOURCE V2
+U 1 1 605C2C1D
+P 1300 3000
+F 0 "V2" H 1528 3046 50  0000 L CNN
+F 1 "9" H 1528 2955 50  0000 L CNN
+F 2 "" H 1300 3000 50  0001 C CNN
+F 3 "~" H 1300 3000 50  0001 C CNN
+	1    1300 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:VSOURCE V3
+U 1 1 605CD822
+P 2300 3050
+F 0 "V3" H 2528 3096 50  0000 L CNN
+F 1 "-9" H 2528 3005 50  0000 L CNN
+F 2 "" H 2300 3050 50  0001 C CNN
+F 3 "~" H 2300 3050 50  0001 C CNN
+	1    2300 3050
+	1    0    0    -1  
+$EndComp
+Text GLabel 1300 2450 0    50   Input ~ 0
+Vpos
+Text GLabel 2300 2450 0    50   Input ~ 0
+Vneg
+$Comp
+L pspice:0 #GND04
+U 1 1 605CEA39
+P 1300 3550
+F 0 "#GND04" H 1300 3450 50  0001 C CNN
+F 1 "0" H 1350 3450 50  0000 C CNN
+F 2 "" H 1300 3550 50  0001 C CNN
+F 3 "~" H 1300 3550 50  0001 C CNN
+	1    1300 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND05
+U 1 1 605CEE80
+P 2300 3550
+F 0 "#GND05" H 2300 3450 50  0001 C CNN
+F 1 "0" H 2350 3450 50  0000 C CNN
+F 2 "" H 2300 3550 50  0001 C CNN
+F 3 "~" H 2300 3550 50  0001 C CNN
+	1    2300 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1300 2450 1300 2700
+Wire Wire Line
+	2300 2450 2300 2750
+Wire Wire Line
+	1300 3550 1300 3300
+Wire Wire Line
+	2300 3350 2300 3550
+Text GLabel 3950 3700 0    50   Input ~ 0
+Vneg
+Text GLabel 3950 2100 0    50   Input ~ 0
+Vpos
+$Comp
+L pspice:VSOURCE V1
+U 1 1 605DD2AB
+P 1100 5100
+F 0 "V1" H 1328 5146 50  0000 L CNN
+F 1 "dc 0 ac 1" H 1328 5055 50  0000 L CNN
+F 2 "" H 1100 5100 50  0001 C CNN
+F 3 "~" H 1100 5100 50  0001 C CNN
+	1    1100 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1100 4500 1100 4800
+Wire Wire Line
+	1100 5600 1100 5400
+Text GLabel 2900 4550 2    50   Input ~ 0
+Vpos
+Text GLabel 2900 5150 3    50   Input ~ 0
+Vneg
+Wire Wire Line
+	1950 4500 2200 4500
+Wire Wire Line
+	3300 4850 3650 4850
+$Comp
+L pspice:0 #GND06
+U 1 1 605FED96
+P 2700 5850
+F 0 "#GND06" H 2700 5750 50  0001 C CNN
+F 1 "0" H 2750 5750 50  0000 C CNN
+F 2 "" H 2700 5850 50  0001 C CNN
+F 3 "~" H 2700 5850 50  0001 C CNN
+	1    2700 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R5
+U 1 1 605FFD70
+P 2700 5600
+F 0 "R5" H 2770 5646 50  0000 L CNN
+F 1 "10k" H 2770 5555 50  0000 L CNN
+F 2 "" V 2630 5600 50  0001 C CNN
+F 3 "~" H 2700 5600 50  0001 C CNN
+	1    2700 5600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 5850 2700 5750
+Wire Wire Line
+	2700 4950 2700 5350
+Wire Wire Line
+	3350 5350 2700 5350
+Connection ~ 2700 5350
+Wire Wire Line
+	2700 5350 2700 5450
+Wire Wire Line
+	3950 4850 3950 5350
+Wire Wire Line
+	3950 5350 3650 5350
+Text GLabel 3950 5350 2    50   Input ~ 0
+Vout
+Text Notes 1250 5400 0    50   ~ 0
+.ac dec 10 10 100k
+$Comp
+L pspice:OPAMP U1
+U 1 1 606262B4
+P 3000 4850
+F 0 "U1" H 3344 4896 50  0000 L CNN
+F 1 "OPAMP" H 3344 4805 50  0000 L CNN
+F 2 "" H 3000 4850 50  0001 C CNN
+F 3 "~" H 3000 4850 50  0001 C CNN
+	1    3000 4850
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
