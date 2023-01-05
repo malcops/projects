@@ -2,14 +2,24 @@ package main
 
 import "fmt"
 
-// Hello returns a greeting for the named person.
-func Hello(name string) string {
-    // Return a greeting that embeds the name in a message.
-    message := fmt.Sprintf("Hi, %v. Welcome!", name)
-    return message
+type golfcourse struct {
+    name string
+    rating float64
+    slope int
+    tees string
+    par int
+    yardage int
 }
 
 func main(){
-	message := Hello("Butthead")
-    fmt.Println(message)
+    course := golfcourse{}
+    // https://course.bluegolf.com/bluegolf/course/course/ospreyvalleyhoot/detailedscorecard.htm
+    course.name = "TPC Toronto - Hoot"
+    course.rating = 75.4
+    course.tees = "gold"
+    course.slope = 148
+    course.par = 72
+    course.yardage = 7134
+
+    fmt.Println(course)
 }
