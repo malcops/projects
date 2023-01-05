@@ -1,6 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"container/ring"
+	"fmt"
+)
+
+// Calculations for golf handicapping according to USGA rules
+// https://www.usga.org/handicapping/roh/2020-rules-of-handicapping.html
 
 type golfcourse struct {
     name string
@@ -10,6 +16,17 @@ type golfcourse struct {
     par int
     yardage int
 }
+
+type score struct {
+    date string
+    course golfcourse
+    score int
+}
+
+type scoringrecord struct {
+    scores *ring.Ring
+}
+
 
 func main(){
     course := golfcourse{}
@@ -22,4 +39,7 @@ func main(){
     course.yardage = 7134
 
     fmt.Println(course)
+
+    scores := scoringrecord{}
+    scores.scores = ring.New(20)
 }
